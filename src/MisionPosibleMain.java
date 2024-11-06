@@ -1,27 +1,41 @@
+import java.io.*;
+import java.util.Scanner;
+
 public class MisionPosibleMain {
     public static void main(String[] args) {
         Escenario escenario = new Escenario("Nostromo", 10);
+        String archivoConfiguracion = "/users/donlevantin/labjava/Practica10/configuracionEscenario.txt";
 
-        // Agregar un Terricola
-        Terricola terricola = new Terricola("Ripley", escenario, new Posicion(3, 2), 100);
-        escenario.agregarElemento(terricola);
+        try {
+            // Cargar la configuración inicial desde el archivo
+            escenario.cargarConfiguracion(archivoConfiguracion);
+            System.out.println("Escenario inicial:");
+            System.out.println(escenario);
 
-        // Agregar un Extraterrestre
-        Extraterrestre extraterrestre = new Extraterrestre("Alien", escenario, new Posicion(4, 4), 50);
-        escenario.agregarElemento(extraterrestre);
+            // Pedir al usuario que ingrese la posición de la bomba para detonar
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Ingrese la fila de la bomba a detonar: ");
+            int fila = scanner.nextInt();
+            System.out.print("Ingrese la columna de la bomba a detonar: ");
+            int columna = scanner.nextInt();
 
-        // Agregar una Bomba
-        Bomba bomba = new Bomba(escenario, new Posicion(4, 4), 1);
-        escenario.agregarElemento(bomba);
+            // Verificar y detonar la bomba en la posición indicada
+            Elemento elemento = escenario.campoDeBatalla[fila][columna];
+            if (elemento instanceof Bomba) {
+                ((Bomba) elemento).explotar();
+            } else {
+                System.out.println("No hay una bomba en esa posición.");
+            }
 
-        // Mostrar el escenario antes de la explosión
-        System.out.println("Escenario antes de la explosión:");
-        System.out.println(escenario);
+            // Mostrar el escenario después de la explosión
+            System.out.println("\nEscenario después de la explosión:");
+            System.out.println(escenario);
 
-        // Hacer explotar la bomba y mostrar el escenario después de la explosión
-        bomba.explotar();
+            // Guardar la configuración actual en el archivo
+            escenario.guardarConfiguracion(archivoConfiguracion);
 
-        System.out.println("\nEscenario después de la explosión:");
-        System.out.println(escenario);
+        } catch (IOException e) {
+            System.out.println("Error al leer o escribir el archivo de configuración: " + e.getMessage());
+        }
     }
 }

@@ -11,6 +11,9 @@ public class Bomba extends Elemento implements Destruible {
         escenario.destruirElemento(posicion, radio);  // Destruye elementos dentro del radio
         destruir();  // La bomba se destruye después de explotar
     }
+    public int getRadio() {
+        return radio;
+    }
 
     @Override
     public void destruir() {

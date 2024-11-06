@@ -1,8 +1,8 @@
-public class Extraterrestre extends Personaje  {
+public class Extraterrestre extends Personaje {
 
     // Constructor que inicializa al Extraterrestre con nombre, escenario, posición y puntos de vida
     public Extraterrestre(String nombre, Escenario escenario, Posicion posicion, int puntosDeVida) {
-        super(nombre, escenario, posicion, puntosDeVida);  // Llama al constructor de la clase base Personaje
+        super(nombre, escenario, posicion);  // Llama al constructor de la clase base Personaje
     }
 
 

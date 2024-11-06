@@ -1,8 +1,8 @@
 public class Terricola extends Personaje {
 
     // Constructor que inicializa al Terricola con nombre, escenario, posición y puntos de vida
-    public Terricola(String nombre, Escenario escenario, Posicion posicion, int puntosDeVida) {
-        super(nombre, escenario, posicion, puntosDeVida);  // Llama al constructor de la clase base Personaje
+    public Terricola(String nombre, Escenario escenario, Posicion posicion) {
+        super(nombre, escenario, posicion);  // Llama al constructor de la clase base Personaje
     }
 
 
